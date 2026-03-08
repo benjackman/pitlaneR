@@ -1,0 +1,12 @@
+{
+  "permission": {
+    "edit": {
+      "*.R": "allow",
+      "*/DESCRIPTION": "allow",
+      "*.Rmd": "allow"
+    },
+    "bash": {
+      "mkdir -p /Users/ben/Documents/GitHub/pitlaneR/vignettes": "allow"
+    }
+  }
+}

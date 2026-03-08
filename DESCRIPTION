@@ -1,0 +1,35 @@
+Package: pitlaneR
+Title: Access Formula 1 Data from the Jolpica API
+Version: 0.1.0
+Authors@R: 
+    person("Ben", "Jackman", role = c("aut", "cre"),
+           email = "ben@example.com")
+Description: Provides tidy access to historical and current Formula 1 data
+    via the free Jolpica API (Ergast-compatible). Retrieve race results,
+    qualifying, sprint results, driver and constructor standings, lap times,
+    pit stops, circuit information, and more. All data is returned as tidy
+    tibbles with sensible column names. No API key or Python dependency
+    required.
+License: MIT + file LICENSE
+URL: https://github.com/benjackman/pitlaneR
+BugReports: https://github.com/benjackman/pitlaneR/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    httr,
+    jsonlite,
+    tibble,
+    dplyr,
+    tidyr,
+    cli,
+    rlang,
+    memoise,
+    cachem
+Suggests:
+    testthat (>= 3.0.0),
+    httptest2,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Config/testthat/edition: 3
