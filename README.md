@@ -2,6 +2,8 @@
 
 Access Formula 1 data from R using the free [Jolpica API](https://jolpi.ca) (Ergast-compatible). No API key or Python dependency required.
 
+Important: the current version of this R package was largely produce by Claude, as part of Posit's AI beta. This code is only partially tested, and so should be treated with caution. Read about this process [on my blog](https://benjackman.github.io/tinkering/#claude-builds-an-r-package).
+
 ## Installation
 
 ```r
