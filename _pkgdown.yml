@@ -1,0 +1,33 @@
+url: https://benjackman.github.io/pitlaneR/
+
+template:
+  bootstrap: 5
+
+reference:
+  - title: Race Results
+    contents:
+      - f1_results
+      - f1_qualifying
+      - f1_sprint
+
+  - title: Championship Standings
+    contents:
+      - f1_driver_standings
+      - f1_constructor_standings
+
+  - title: Reference Data
+    contents:
+      - f1_seasons
+      - f1_races
+      - f1_circuits
+      - f1_drivers
+      - f1_constructors
+
+  - title: Detailed Timing
+    contents:
+      - f1_laps
+      - f1_pit_stops
+
+  - title: Utilities
+    contents:
+      - f1_clear_cache

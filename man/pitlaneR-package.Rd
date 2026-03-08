@@ -65,6 +65,7 @@ World Championship from 1950 to the present.
 Useful links:
 \itemize{
   \item \url{https://github.com/benjackman/pitlaneR}
+  \item \url{https://benjackman.github.io/pitlaneR/}
   \item Report bugs at \url{https://github.com/benjackman/pitlaneR/issues}
 }
 

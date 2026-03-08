@@ -11,7 +11,7 @@ Description: Provides tidy access to historical and current Formula 1 data
     tibbles with sensible column names. No API key or Python dependency
     required.
 License: MIT + file LICENSE
-URL: https://github.com/benjackman/pitlaneR
+URL: https://github.com/benjackman/pitlaneR, https://benjackman.github.io/pitlaneR/
 BugReports: https://github.com/benjackman/pitlaneR/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

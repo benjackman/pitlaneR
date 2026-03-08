@@ -3,10 +3,13 @@
     "edit": {
       "*.R": "allow",
       "*/DESCRIPTION": "allow",
-      "*.Rmd": "allow"
+      "*.Rmd": "allow",
+      "*.yml": "allow"
     },
     "bash": {
-      "mkdir -p /Users/ben/Documents/GitHub/pitlaneR/vignettes": "allow"
+      "mkdir -p /Users/ben/Documents/GitHub/pitlaneR/vignettes": "allow",
+      "cd /Users/ben/Documents/GitHub/pitlaneR": "allow",
+      "git *": "allow"
     }
   }
 }
