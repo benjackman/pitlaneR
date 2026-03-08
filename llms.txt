@@ -1,0 +1,129 @@
+# pitlaneR
+
+Access Formula 1 data from R using the free [Jolpica
+API](https://jolpi.ca) (Ergast-compatible). No API key or Python
+dependency required.
+
+Important: the current version of this R package was largely produce by
+Claude, as part of Posit’s AI beta. This code is only partially tested,
+and so should be treated with caution. Read about this process [on my
+blog](https://benjackman.github.io/tinkering/#claude-builds-an-r-package).
+
+## Installation
+
+``` r
+# Install from GitHub
+# install.packages("pak")
+pak::pak("benjackman/pitlaneR")
+```
+
+## Quick start
+
+``` r
+library(pitlaneR)
+
+# Race results for a specific round
+f1_results(2024, 1)
+
+# Full season results
+f1_results(2024)
+
+# Current championship standings
+f1_driver_standings(2024)
+f1_constructor_standings(2024)
+
+# Qualifying results
+f1_qualifying(2024, 1)
+
+# Drivers and constructors
+f1_drivers(2024)
+f1_constructors(2024)
+
+# Race schedule
+f1_races(2024)
+
+# Circuit info
+f1_circuits()
+
+# Lap times (available from 1996+)
+f1_laps(2024, 1)
+
+# Pit stops (available from 2012+)
+f1_pit_stops(2024, 1)
+
+# Sprint results
+f1_sprint(2024)
+
+# All F1 seasons
+f1_seasons()
+```
+
+## Features
+
+- **Tidy output**: All functions return tibbles with snake_case column
+  names
+- **Automatic pagination**: Large result sets are fetched across
+  multiple API pages automatically
+- **Session caching**: Repeated calls are served from an in-memory cache
+  (reset with
+  [`f1_clear_cache()`](https://benjackman.github.io/pitlaneR/reference/f1_clear_cache.md))
+- **Historical coverage**: Data from 1950 to the present season
+
+## Data source
+
+All data comes from the [Jolpica F1 API](https://jolpi.ca), a free,
+community-maintained successor to the Ergast Motor Racing API.
+
+## License
+
+MIT
+
+# Package index
+
+## Race Results
+
+- [`f1_results()`](https://benjackman.github.io/pitlaneR/reference/f1_results.md)
+  : Get F1 race results
+- [`f1_qualifying()`](https://benjackman.github.io/pitlaneR/reference/f1_qualifying.md)
+  : Get F1 qualifying results
+- [`f1_sprint()`](https://benjackman.github.io/pitlaneR/reference/f1_sprint.md)
+  : Get F1 sprint race results
+
+## Championship Standings
+
+- [`f1_driver_standings()`](https://benjackman.github.io/pitlaneR/reference/f1_driver_standings.md)
+  : Get F1 driver championship standings
+- [`f1_constructor_standings()`](https://benjackman.github.io/pitlaneR/reference/f1_constructor_standings.md)
+  : Get F1 constructor championship standings
+
+## Reference Data
+
+- [`f1_seasons()`](https://benjackman.github.io/pitlaneR/reference/f1_seasons.md)
+  : Get all F1 seasons
+- [`f1_races()`](https://benjackman.github.io/pitlaneR/reference/f1_races.md)
+  : Get F1 race schedule
+- [`f1_circuits()`](https://benjackman.github.io/pitlaneR/reference/f1_circuits.md)
+  : Get F1 circuit information
+- [`f1_drivers()`](https://benjackman.github.io/pitlaneR/reference/f1_drivers.md)
+  : Get F1 driver information
+- [`f1_constructors()`](https://benjackman.github.io/pitlaneR/reference/f1_constructors.md)
+  : Get F1 constructor information
+
+## Detailed Timing
+
+- [`f1_laps()`](https://benjackman.github.io/pitlaneR/reference/f1_laps.md)
+  : Get F1 lap time data
+- [`f1_pit_stops()`](https://benjackman.github.io/pitlaneR/reference/f1_pit_stops.md)
+  : Get F1 pit stop data
+
+## Utilities
+
+- [`f1_clear_cache()`](https://benjackman.github.io/pitlaneR/reference/f1_clear_cache.md)
+  : Clear the pitlaneR session cache
+
+# Articles
+
+### All vignettes
+
+- [Getting Started with
+  pitlaneR](https://benjackman.github.io/pitlaneR/articles/pitlaneR.md):

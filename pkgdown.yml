@@ -1,0 +1,9 @@
+pandoc: 3.1.11
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  pitlaneR: pitlaneR.html
+last_built: 2026-03-08T11:08Z
+urls:
+  reference: https://benjackman.github.io/pitlaneR/reference
+  article: https://benjackman.github.io/pitlaneR/articles
