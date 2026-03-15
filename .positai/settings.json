@@ -4,12 +4,19 @@
       "*.R": "allow",
       "*/DESCRIPTION": "allow",
       "*.Rmd": "allow",
-      "*.yml": "allow"
+      "*.yml": "allow",
+      "*.md": "allow"
     },
     "bash": {
       "mkdir -p /Users/ben/Documents/GitHub/pitlaneR/vignettes": "allow",
       "cd /Users/ben/Documents/GitHub/pitlaneR": "allow",
-      "git *": "allow"
+      "git *": "allow",
+      "grep *": "allow",
+      "cd /Users/ben/Documents/GitHub/pitlaneR/tests/testthat": "allow",
+      "mv test-cache.R test-zzz-cache.R": "allow"
+    },
+    "webfetch": {
+      "https://github.com/*": "allow"
     }
   }
 }

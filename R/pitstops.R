@@ -3,7 +3,7 @@
 #' Retrieves pit stop data for a specific race, including stop number, lap,
 #' time of day, and duration.
 #'
-#' Pit stop data is available from the 2012 season onward.
+#' Pit stop data is available from the 2011 season onward.
 #'
 #' @param season Integer or character. The season year (e.g., `2024`).
 #'   **Required** (no default).

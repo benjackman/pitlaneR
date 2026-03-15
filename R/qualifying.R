@@ -5,7 +5,8 @@
 #' onward**; requesting earlier seasons will raise an error.
 #'
 #' @param season Integer or character. The season year (e.g., `2024`), must be
-#'   1994 or later (the Jolpica API does not provide qualifying results earlier than 1994). Defaults to the current year.
+#'   1994 or later (the Jolpica API does not provide qualifying results earlier
+#'   than 1994). Defaults to the current year.
 #' @param round Integer or character. The round number within the season. If
 #'   `NULL` (default), returns qualifying results for all rounds in the season.
 #'
@@ -23,6 +24,12 @@
 #'     \item{constructor_*}{Constructor details (id, name, nationality).}
 #'   }
 #'
+#'   Some columns (e.g., `q2`, `q3`, `driver_permanent_number`) may be `NA`
+#'   for earlier seasons where the qualifying format differed or the data was
+#'   not recorded by the API. See the
+#'   [Jolpica API documentation](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)
+#'   for details on data availability.
+#'
 #' @family race results
 #' @seealso [f1_results()] for race results, [f1_sprint()] for sprint results.
 #' @export
@@ -35,6 +42,17 @@
 #' f1_qualifying(2024)
 #' }
 f1_qualifying <- function(season = NULL, round = NULL) {
+  expected_cols <- c(
+    "season", "round", "race_name", "race_date",
+    "number", "position",
+    "driver_id", "driver_permanent_number", "driver_code",
+    "driver_url", "driver_given_name", "driver_family_name",
+    "driver_date_of_birth", "driver_nationality",
+    "constructor_id", "constructor_url", "constructor_name",
+    "constructor_nationality",
+    "q1", "q2", "q3"
+  )
+
   season <- resolve_season(season)
 
   if (as.integer(season) < 1994L) {
@@ -84,5 +102,6 @@ f1_qualifying <- function(season = NULL, round = NULL) {
   other_cols <- setdiff(names(result), race_cols)
   result <- result[, c(race_cols, other_cols)]
 
+  result <- ensure_columns(result, expected_cols)
   apply_type_conversions(result)
 }

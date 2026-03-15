@@ -25,6 +25,12 @@
 #'     \item{fastest_lap_*}{Fastest lap details (where available).}
 #'   }
 #'
+#'   Some columns (e.g., `fastest_lap_*`, `driver_permanent_number`,
+#'   `driver_code`) may be `NA` for earlier seasons where the data was not
+#'   recorded by the API. See the
+#'   [Jolpica API documentation](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)
+#'   for details on data availability.
+#'
 #' @family race results
 #' @seealso [f1_qualifying()] for qualifying session results,
 #'   [f1_sprint()] for sprint race results.
@@ -38,6 +44,20 @@
 #' f1_results(2024)
 #' }
 f1_results <- function(season = NULL, round = NULL) {
+  expected_cols <- c(
+    "season", "round", "race_name", "race_date",
+    "number", "position", "position_text", "points",
+    "driver_id", "driver_permanent_number", "driver_code",
+    "driver_url", "driver_given_name", "driver_family_name",
+    "driver_date_of_birth", "driver_nationality",
+    "constructor_id", "constructor_url", "constructor_name",
+    "constructor_nationality",
+    "grid", "laps", "status",
+    "time_millis", "time_time",
+    "fastest_lap_rank", "fastest_lap_lap", "fastest_lap_time_time",
+    "fastest_lap_average_speed_units", "fastest_lap_average_speed_speed"
+  )
+
   season <- resolve_season(season)
   endpoint <- if (!is.null(round)) {
     c(season, as.character(round), "results")
@@ -78,5 +98,6 @@ f1_results <- function(season = NULL, round = NULL) {
   other_cols <- setdiff(names(result), race_cols)
   result <- result[, c(race_cols, other_cols)]
 
+  result <- ensure_columns(result, expected_cols)
   apply_type_conversions(result)
 }

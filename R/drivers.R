@@ -18,6 +18,11 @@
 #'     \item{url}{Character. Wikipedia URL.}
 #'   }
 #'
+#'   Some columns (e.g., `permanent_number`, `code`) may be `NA` for drivers
+#'   from earlier seasons where the data was not recorded by the API. See the
+#'   [Jolpica API documentation](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)
+#'   for details on data availability.
+#'
 #' @family reference data
 #' @seealso [f1_constructors()] for team information.
 #' @export
@@ -30,6 +35,11 @@
 #' f1_drivers()
 #' }
 f1_drivers <- function(season = NULL) {
+  expected_cols <- c(
+    "driver_id", "permanent_number", "code", "url",
+    "given_name", "family_name", "date_of_birth", "nationality"
+  )
+
   endpoint <- if (!is.null(season)) {
     c(resolve_season(season), "drivers")
   } else {
@@ -40,5 +50,6 @@ f1_drivers <- function(season = NULL) {
   if (nrow(data) == 0) return(tibble::tibble())
 
   data <- flatten_and_rename(data)
+  data <- ensure_columns(data, expected_cols)
   apply_type_conversions(data)
 }

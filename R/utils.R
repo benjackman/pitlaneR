@@ -57,6 +57,25 @@ flatten_and_rename <- function(df, prefix = NULL) {
   result
 }
 
+#' Ensure a data frame contains all expected columns
+#'
+#' Adds any missing columns as NA_character_ and reorders to match the
+#' expected column order. Should be called before apply_type_conversions().
+#'
+#' @param df A data frame
+#' @param expected_cols Character vector of expected column names
+#' @return A tibble with all expected columns present, in order
+#' @noRd
+ensure_columns <- function(df, expected_cols) {
+  missing <- setdiff(expected_cols, names(df))
+  for (col in missing) {
+    df[[col]] <- NA_character_
+  }
+  # Keep expected cols in order, then any extras not in the expected set
+  extras <- setdiff(names(df), expected_cols)
+  df[, c(expected_cols, extras), drop = FALSE]
+}
+
 #' Apply standard type conversions to known column patterns
 #' @noRd
 apply_type_conversions <- function(df) {
@@ -66,7 +85,7 @@ apply_type_conversions <- function(df) {
     "duration"
   )
   date_patterns <- c("date", "date_of_birth")
-  integer_patterns <- c("position", "grid", "laps", "number", "wins",
+  integer_patterns <- c("position", "grid", "lap", "laps", "number", "wins",
                         "permanent_number", "stop", "rank", "round", "season")
 
   for (col in names(df)) {

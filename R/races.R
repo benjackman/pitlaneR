@@ -20,6 +20,11 @@
 #'     \item{sprint_*}{Sprint session date and time (where applicable).}
 #'   }
 #'
+#'   Some columns (e.g., session times, sprint dates) may be `NA` for earlier
+#'   seasons where the data was not recorded by the API. See the
+#'   [Jolpica API documentation](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)
+#'   for details on data availability.
+#'
 #' @family reference data
 #' @seealso [f1_circuits()] for detailed circuit information.
 #' @export
@@ -32,10 +37,25 @@
 #' f1_races()
 #' }
 f1_races <- function(season = NULL) {
+  expected_cols <- c(
+    "season", "round", "url", "race_name",
+    "circuit_id", "circuit_url", "circuit_name",
+    "circuit_location_lat", "circuit_location_long",
+    "circuit_location_locality", "circuit_location_country",
+    "date", "time",
+    "first_practice_date", "first_practice_time",
+    "second_practice_date", "second_practice_time",
+    "third_practice_date", "third_practice_time",
+    "qualifying_date", "qualifying_time",
+    "sprint_date", "sprint_time",
+    "sprint_qualifying_date", "sprint_qualifying_time"
+  )
+
   season <- resolve_season(season)
   data <- f1_fetch_cached(c(season, "races"), "RaceTable", "Races")
   if (nrow(data) == 0) return(tibble::tibble())
 
   data <- flatten_and_rename(data)
+  data <- ensure_columns(data, expected_cols)
   apply_type_conversions(data)
 }
